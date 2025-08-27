@@ -147,7 +147,7 @@ function BuyerNavbar({ isLogin, setIsLogin }) {
             </Link>
             <button 
               onClick={handleLogout} 
-              className="text-red-600 text-xl font-bold hover:text-red-500 transition-all"
+              className="text-red-600 text-xl font-bold hover:text-red-500 transition-all" to='/'
             >
               Logout
             </button>

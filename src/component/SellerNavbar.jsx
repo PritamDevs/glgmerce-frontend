@@ -96,7 +96,7 @@ function SellerNavbar({ isLogin, setIsLogin }) {
             </Link>
             <Link
               onClick={handleLogout}
-              className='text-red-600 text-xl font-bold hover:text-red-500 transition-all'
+              className='text-red-600 text-xl font-bold hover:text-red-500 transition-all'to='/'
             >
               Logout
             </Link>
