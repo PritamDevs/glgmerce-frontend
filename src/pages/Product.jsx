@@ -8,9 +8,8 @@ function Product() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const role = localStorage.getItem("role") // 👈 get role from storage
+  const role = localStorage.getItem("role") 
 
-  // Fetch all products
   const fetchAllProducts = async () => {
     setLoading(true)
     try {
@@ -31,8 +30,6 @@ function Product() {
       setLoading(false)
     }
   }
-
-  // Delete product
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
 
@@ -47,7 +44,6 @@ function Product() {
         return toast.error(response.data.message)
       }
 
-      // Update UI by removing deleted product
       setProducts(products.filter(item => item._id !== id))
 
       toast.success(response.data.message)
@@ -82,7 +78,6 @@ function Product() {
 
               <p className="mt-4 text-lg font-bold text-indigo-600">₹ {item.price}</p>
 
-              {/* 👇 Only show delete button if role is seller */}
               {role === "seller" && (
                 <button
                   onClick={() => handleDelete(item._id)}
