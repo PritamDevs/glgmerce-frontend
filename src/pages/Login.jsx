@@ -32,7 +32,8 @@ function Login({setIsLogin}) {
                 localStorage.setItem('name',response.data.seller.name)
                 localStorage.setItem('email',response.data.seller.email)
                 localStorage.setItem('phone',response.data.seller.phone)   
-                localStorage.setItem("role", "seller")             
+                localStorage.setItem("role", "seller"),
+                localStorage.setItem("userId", response.data.seller._id);             
 
                 toast.success(response.data.message)
                 setIsLogin(true)

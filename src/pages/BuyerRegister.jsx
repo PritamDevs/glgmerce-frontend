@@ -95,7 +95,7 @@ function BuyerRegister() {
                 </div>
 
                 <div className="mt-6 text-green-600 text-center">
-                    <a href="/login" className="hover:underline">Sign in Here</a>
+                    <a href="/Buyerlogin" className="hover:underline">Sign in Here</a>
                 </div>
             </div>
 

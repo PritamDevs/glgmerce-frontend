@@ -146,6 +146,7 @@ function BuyerLogin({ setIsLogin }) {
       localStorage.setItem('email', response.data.buyer.email)
       localStorage.setItem('phone', response.data.buyer.phone)
       localStorage.setItem('role', 'buyer')
+      localStorage.setItem("userId", response.data.buyer._id);
 
       toast.success(response.data.message)
 
@@ -209,7 +210,7 @@ function BuyerLogin({ setIsLogin }) {
         </div>
 
         <div className="mt-6 text-green-600 text-center">
-          <a href="/register" className="hover:underline">Sign up Here</a>
+          <a href="/buyerregister" className="hover:underline">Sign up Here</a>
         </div>
       </div>
 

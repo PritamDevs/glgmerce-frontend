@@ -36,7 +36,7 @@ function Product() {
     try {
       const response = await axios.delete(`${BACKEND_URL}/product/delete/${id}`, {
         headers: {
-          Authorization: localStorage.getItem('mytoken')
+          Authorization: `Bearer ${localStorage.getItem('mytoken')}`
         }
       })
 
@@ -51,6 +51,21 @@ function Product() {
       toast.error(error.response?.data?.message || "Failed to delete")
     }
   }
+const addToCart = async (productId) => {
+  try {
+    const token = localStorage.getItem("mytoken");
+    let response = await axios.post(
+      `${BACKEND_URL}/cart/add`,
+      { productId, quantity: 1 },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    toast.success(response.data.message);
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Error adding to cart");
+  }
+};
+
 
   useEffect(() => {
     fetchAllProducts()
@@ -75,10 +90,17 @@ function Product() {
                 <p className="text-sm text-gray-500"><span className="font-medium">Brand:</span> {item.brand}</p>
                 <p className="text-sm text-gray-500"><span className="font-medium">Size:</span> {item.size}</p>
               </div>
+              <div className="flex items-center justify-between mt-4">
+              <p className="mt-4 text-lg font-bold text-indigo-600 inline-block ">₹ {item.price}</p>
 
-              <p className="mt-4 text-lg font-bold text-indigo-600">₹ {item.price}</p>
+              {role === "buyer" && (
+              <button onClick={() => addToCart(item._id)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+               Add to Cart
+              </button>
+              )}
+              </div>
 
-              {role === "seller" && (
+              {role === "seller" && localStorage.getItem("userId")===item.sellerId && (
                 <button
                   onClick={() => handleDelete(item._id)}
                   className="mt-4 w-full bg-red-500 text-white py-2 px-4 rounded-xl hover:bg-red-600 transition"
